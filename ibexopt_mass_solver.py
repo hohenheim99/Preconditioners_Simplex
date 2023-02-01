@@ -3,7 +3,7 @@ from pathlib import Path
 import csv
 
 #--------------CONFIGURATION HALL -------------
-seed=3
+seed=1
 timeout=1800
 # ---------------------------------------------
 def Mass_solver(path):
