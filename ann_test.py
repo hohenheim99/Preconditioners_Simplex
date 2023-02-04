@@ -25,13 +25,24 @@ seed = 7
 np.random.seed(seed)
 X_train, X_test,  = train_test_split(input, test_size=0.2, random_state=seed)
 Y_train, Y_test = train_test_split(output, test_size=0.2, random_state=seed)
-print(len(Y_train))
-print(len(X_train))
-print(len(Y_test))
-print(len(X_test))
 
 es = EarlyStopping(monitor='loss', mode='min', verbose=1,min_delta=0.01, patience=20)
 lr_schedule = keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.001, decay_steps=1600, decay_rate=0.95)
 rmsprop = keras.optimizers.RMSprop(learning_rate=lr_schedule, momentum=0.3)
 
-model = keras.Sequential()
+model = keras.Sequential(
+    [
+
+    
+
+
+
+])
+
+
+print(len(Y_train))
+print(len(X_train))
+# print(len(Y_test))
+# print(len(X_test))
+# print(X_train[0])
+# print(Y_train[0])

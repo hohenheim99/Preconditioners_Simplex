@@ -21,6 +21,14 @@ def delete_characters(a):
             a=a.replace(i,"")
 
     return a
+def fill_zeros(input_list, N):
+    return input_list + [0] * (N - len(input_list))
+
+def check_max_size(list):
+    pass
+   
+
+
 def get_data_A(path): #Get matrix A, y convertirla en un array de listas
     m_A = open(path, "r")
     lines = m_A.read().split("%")
@@ -108,7 +116,8 @@ def make_tensors(folder):
             mX=mX.tolist()
 
             tensor = list(itertools.chain(mA, mB, mX))
-            tensorList.append(tensor)
+            filled_tensor=fill_zeros(tensor,200)
+            tensorList.append(filled_tensor)
             #MEDIR EL MAXIMO LEN DE LA LISTA
             
     else:
@@ -124,7 +133,7 @@ def make_tensors(folder):
 # folder=input("folder: ")
 # list=make_tensors(folder)
 
-# # for i in list: print(i)
+# for i in list: print(i)
 
 # list_len = [len(i) for i in list]
 
