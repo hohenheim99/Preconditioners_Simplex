@@ -2,47 +2,28 @@ import numpy as np
 import ast
 from interval import interval, inf, imath
 import itertools
+import re
 
 
-def delete_characters(a):
-    characters =["((","))","(",")",";","\n"," "]
-    for i in characters:
-        if i ==";":
-            a=a.replace(i,",")
-        elif i =="((":
-            a=a.replace(i,"[[")
-        elif i =="))":
-            a=a.replace(i,"]]")
-        elif i =="(":
-            a=a.replace(i,"[")
-        elif i ==")":
-            a=a.replace(i,"],")
-        else:
-            a=a.replace(i,"")
 
-    return a
 
-def delete_spaces(word):
-    word=word.replace(" ","")
-    return word
+
 
 def fill_zeros(input_list, N):
     return input_list + [0] * (int(N) - len(input_list))
 
 
 def get_data_A(path): #Get matrix A, y convertirla en un array de listas
-    m_A = open(path, "r")
-    lines = m_A.read().split("%")
-    MatrixA=[]
+   MatrixA=[]
+   with open(path+'DS_MatrixA.txt','r') as file:
+    lines = file.read().split("%")
     for line in lines:
-        if line == "\n":
-            break
-        out=delete_characters(line)
-        data=ast.literal_eval(out)
-        #arr= [eval(i) for i in arr] #Para convertir de string a lista simple
-        MatrixA.append(data)
+        if line == '\n': break
+        list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+        list = [float(i) for i in list]
+        MatrixA.append(list)
     return MatrixA
-#print(A.reshape(1,8))
+        
 
 
 def get_data_B(path):

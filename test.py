@@ -12,11 +12,25 @@ pathP=folder+'/DS_P.txt'
 
 list=[]
 # temp=open("test.txt","a")
-with open('test_results/DS_MatrixA.txt','r') as file:
+with open('test_results/DS_P.txt','r') as file:
     lines = file.read().split("%")
     for line in lines:
-        aux=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
-        print(aux)
+        if line == '\n': break
+        temp=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+        #temp=re.findall("'[\d.]+",line)
+        try:
+            temp = [float(i) for i in temp]
+        except ValueError:
+            temp=0 #for when is empty P
+        
+        if type(temp) == "list":
+            print(type(temp[0]))
+        
+        print(temp)
+    
+        
+        
+        
     
         
 
