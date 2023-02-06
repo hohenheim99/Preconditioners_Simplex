@@ -142,18 +142,16 @@ def make_tensor_P(folder,n):
     return tensor_P
 
 
-
-# folder=input("folder: ")
-# n=input("size: ")
-# list=make_tensors(folder,n)
-# P_list=make_tensor_P(folder,n)
-
-# for i in list: print(i)
-
-# list_len = [len(i) for i in list]
-# list_len2 = [len(i) for i in P_list]
-
-
-# print(max(list_len))
-# print(max(list_len2))
+def get_A(path): 
+    m_A = open(path, "r")
+    lines = m_A.read().split("%")
+    MatrixA=[]
+    for line in lines:
+        if line == "\n":
+            break
+        out=delete_characters(line)
+        data=ast.literal_eval(out)
+      
+        MatrixA.append(data)
+    return MatrixA
 

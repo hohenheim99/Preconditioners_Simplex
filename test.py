@@ -1,6 +1,7 @@
 import os 
 from get_data import *
-
+import re
+import ast
 
 folder="test_results"
 pathA=folder+'/DS_MatrixA.txt'
@@ -8,16 +9,15 @@ pathB=folder+'/DS_MatrixB.txt'
 pathX=folder+'/DS_MatrixX.txt'
 pathP=folder+'/DS_P.txt'
 
-list1= get_data_P(pathP)
 
-list2=get_data_A(pathA)
+list=[]
+# temp=open("test.txt","a")
+with open('test_results/DS_MatrixA.txt','r') as file:
+    lines = file.read().split("%")
+    for line in lines:
+        aux=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+        print(aux)
+    
+        
 
-list3=get_data_B(pathB)
-
-list4=get_data_X(pathX)
-
-print(len(list1))
-print(len(list2))
-print(len(list3))
-print(len(list4))
 
