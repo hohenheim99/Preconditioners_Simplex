@@ -22,7 +22,7 @@ def delete_characters(a):
 
     return a
 def fill_zeros(input_list, N):
-    return input_list + [0] * (N - len(input_list))
+    return input_list + [0] * (int(N) - len(input_list))
 
 def check_max_size(list):
     pass
@@ -86,12 +86,12 @@ def get_data_P(path):
     return MatrixP
 
 
-def make_tensors(folder):
+def make_tensors(folder,n):
     #paths
     pathA=folder+'/DS_MatrixA.txt'
     pathB=folder+'/DS_MatrixB.txt'
     pathX=folder+'/DS_MatrixX.txt'
-
+    
 
     
 
@@ -105,7 +105,7 @@ def make_tensors(folder):
             #MATRIX A
             mA=np.array(MatrixA[i])
             mA.flatten()
-            mA=mA.tolist() #se puede?
+            mA=mA.tolist()
             #MATRIX B
             mB=np.array(MatrixB[i])
             mB.flatten()
@@ -116,7 +116,7 @@ def make_tensors(folder):
             mX=mX.tolist()
 
             tensor = list(itertools.chain(mA, mB, mX))
-            filled_tensor=fill_zeros(tensor,200)
+            filled_tensor=fill_zeros(tensor,n)
             tensorList.append(filled_tensor)
             #MEDIR EL MAXIMO LEN DE LA LISTA
             
@@ -128,13 +128,32 @@ def make_tensors(folder):
 
 
 
+def make_tensor_P(folder,n):
+    pathP=folder+'/DS_P.txt'
+    tensor_P=[]
+    list=get_data_P(pathP)
+    for i in range(len(list)):
+        mP=np.array(list[i])
+        mP.flatten()
+        mP=mP.tolist()
+        mP=fill_zeros(mP,n)
+        tensor_P.append(mP)
+    
+    return tensor_P
+
 
 
 # folder=input("folder: ")
-# list=make_tensors(folder)
+# n=input("size: ")
+# list=make_tensors(folder,n)
+# P_list=make_tensor_P(folder,n)
 
 # for i in list: print(i)
 
 # list_len = [len(i) for i in list]
+# list_len2 = [len(i) for i in P_list]
+
 
 # print(max(list_len))
+# print(max(list_len2))
+

@@ -7,18 +7,11 @@ from keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-
-
-
-
+#Make data and tensors for the input/output
 folder=input("select folder: ")
-
-
-pathP=folder+'/DS_P.txt'
-
-input=make_tensors(folder)
-
-output=get_data_P(pathP)
+n=200
+input=make_tensors(folder,n)
+output=make_tensor_P(folder,n)
 
 
 seed = 7
@@ -30,8 +23,7 @@ es = EarlyStopping(monitor='loss', mode='min', verbose=1,min_delta=0.01, patienc
 lr_schedule = keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.001, decay_steps=1600, decay_rate=0.95)
 rmsprop = keras.optimizers.RMSprop(learning_rate=lr_schedule, momentum=0.3)
 
-model = keras.Sequential(
-    [
+model = keras.Sequential([
 
     
 
@@ -42,7 +34,7 @@ model = keras.Sequential(
 
 print(len(Y_train))
 print(len(X_train))
-# print(len(Y_test))
-# print(len(X_test))
-# print(X_train[0])
-# print(Y_train[0])
+print(len(Y_test))
+print(len(X_test))
+print(X_train[0])
+print(Y_train[0])
