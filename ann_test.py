@@ -6,35 +6,39 @@ from get_data import *
 from keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 #Make data and tensors for the input/output
-folder=input("select folder: ")
-n=200
+folder='test_results'
+n=100
 input=make_tensors(folder,n)
 output=make_tensor_P(folder,n)
 
+input=input[:10]
+output=output[:10]
+print("input",type(input))
+print("output",type(output))
+epochs=10
 
 seed = 7
 np.random.seed(seed)
 X_train, X_test,  = train_test_split(input, test_size=0.2, random_state=seed)
 Y_train, Y_test = train_test_split(output, test_size=0.2, random_state=seed)
 
-es = EarlyStopping(monitor='loss', mode='min', verbose=1,min_delta=0.01, patience=20)
-lr_schedule = keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.001, decay_steps=1600, decay_rate=0.95)
-rmsprop = keras.optimizers.RMSprop(learning_rate=lr_schedule, momentum=0.3)
+
 
 model = keras.Sequential([
-
-    
-
-
+        keras.layers.Dense(32, input_shape=(200,), activation="relu")
+       
 
 ])
 
+model.compile(loss='mean_absolute_error', optimizer='adam')
+model.summary()
+model.fit(X_test,Y_test, batch_size=100, epochs=epochs)
 
-print(len(Y_train))
-print(len(X_train))
-print(len(Y_test))
-print(len(X_test))
-print(X_train[0])
-print(Y_train[0])
+
+
+
+prediction = model.predict(X_test)
+print(prediction[0])
