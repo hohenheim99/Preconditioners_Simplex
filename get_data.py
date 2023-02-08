@@ -2,119 +2,80 @@ import numpy as np
 import ast
 from interval import interval, inf, imath
 import itertools
-
-
-def delete_characters(a):
-    characters =["((","))","(",")",";","\n"," "]
-    for i in characters:
-        if i ==";":
-            a=a.replace(i,",")
-        elif i =="((":
-            a=a.replace(i,"[[")
-        elif i =="))":
-            a=a.replace(i,"]]")
-        elif i =="(":
-            a=a.replace(i,"[")
-        elif i ==")":
-            a=a.replace(i,"],")
-        else:
-            a=a.replace(i,"")
-
-    return a
-
-def delete_spaces(word):
-    word=word.replace(" ","")
-    return word
+import re
 
 def fill_zeros(input_list, N):
     return input_list + [0] * (int(N) - len(input_list))
 
 
 def get_data_A(path): #Get matrix A, y convertirla en un array de listas
-    m_A = open(path, "r")
-    lines = m_A.read().split("%")
-    MatrixA=[]
+   MatrixA=[]
+   with open(path+'/DS_MatrixA.txt','r') as file:
+    lines = file.read().split("%")
     for line in lines:
-        if line == "\n":
-            break
-        out=delete_characters(line)
-        data=ast.literal_eval(out)
-        #arr= [eval(i) for i in arr] #Para convertir de string a lista simple
-        MatrixA.append(data)
+        if line == '\n': break
+        list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+        list = [float(i) for i in list]
+        MatrixA.append(list)
     return MatrixA
-#print(A.reshape(1,8))
+        
 
 
 def get_data_B(path):
-    m_A = open(path, "r")
-    lines = m_A.read().split("%")
     MatrixB=[]
-    for line in lines:
-        if line == "\n":
-            break
-        out=delete_characters(line)
-        data=ast.literal_eval(out.replace("],","]"))
-        MatrixB.append(data)
+    with open(path+'/DS_MatrixB.txt','r') as file:
+        lines=file.read().split('%')
+        for line in lines:
+            if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            MatrixB.append(list)
     return MatrixB
 
 
 
 def get_data_X(path):
-    m_A = open(path, "r")
-    lines = m_A.read().split("%")
     MatrixX=[]
-    for line in lines:
-        if line == "\n":
-            break
-        out=line.replace(";",",")
-        data=ast.literal_eval(out)
-        MatrixX.append(data)
+    with open(path+'/DS_MatrixX.txt','r') as file:
+        lines=file.read().split('%')
+        for line in lines:
+            if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            MatrixX.append(list)
     return MatrixX
 
 
 def get_data_P(path):
-    pass
-    m_A=open(path,"r")
-    lines = m_A.read().split("%")
     MatrixP=[]
-    for line in lines:
-        if line=="\n":
-            break
-        out=delete_characters(line)
-        data=ast.literal_eval(out)
-        #arr= [eval(i) for i in arr] #Para convertir de string a lista simple
-        MatrixP.append(data)
+    with open(path+'/DS_P.txt','r') as file:
+        lines = file.read().split("%")
+        for line in lines:
+            if line == '\n': break
+            aux=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            try:
+                aux = [float(i) for i in aux]
+            except ValueError:
+                aux=0 #for when is empty P
+            MatrixP.append(aux)
     return MatrixP
 
 
 def make_tensors(folder,n):
-    #paths
-    pathA=folder+'/DS_MatrixA.txt'
-    pathB=folder+'/DS_MatrixB.txt'
-    pathX=folder+'/DS_MatrixX.txt'
-    
-
-    
-
     #unir las matrices en un tensor para luego entregarsela al input 
-    MatrixA=get_data_A(pathA)
-    MatrixB=get_data_B(pathB)
-    MatrixX=get_data_X(pathX)
+    MatrixA=get_data_A(folder)
+    MatrixB=get_data_B(folder)
+    MatrixX=get_data_X(folder)
     tensorList=[]
     if len(MatrixA) == len(MatrixB) and len(MatrixB) == len(MatrixX):
         for i in range(len(MatrixA)):
             #MATRIX A
             mA=np.array(MatrixA[i])
-            mA.flatten()
-            mA=mA.tolist()
-            #MATRIX B
-            mB=np.array(MatrixB[i])
-            mB.flatten()
-            mB=mB.tolist()
             #MATRIX X 
             mX=np.array(MatrixX[i])
-            mX.flatten()
-            mX=mX.tolist()
+            #MATRIX B
+            mB=np.array(MatrixB[i])
+            
 
             tensor = list(itertools.chain(mA, mB, mX))
             filled_tensor=fill_zeros(tensor,n)
@@ -129,30 +90,11 @@ def make_tensors(folder,n):
 
 
 
-def make_tensor_P(folder,n):
-    pathP=folder+'/DS_P.txt'
-    tensor_P=[]
-    list=get_data_P(pathP)
-    for i in range(len(list)):
-        mP=np.array(list[i])
-        mP.flatten()
-        mP=mP.tolist()
-        mP=fill_zeros(mP,n)
-        tensor_P.append(mP)
-    
-    return tensor_P
 
+folder=input()
+# list=make_tensors(folder,200)
+list=get_data_P(folder)
 
-def get_A(path): 
-    m_A = open(path, "r")
-    lines = m_A.read().split("%")
-    MatrixA=[]
-    for line in lines:
-        if line == "\n":
-            break
-        out=delete_characters(line)
-        data=ast.literal_eval(out)
-      
-        MatrixA.append(data)
-    return MatrixA
-
+for i in list:
+    print(i)
+    print(type(i))
