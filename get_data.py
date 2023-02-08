@@ -88,13 +88,21 @@ def make_tensors(folder,n):
 
     return tensorList
 
+def make_tensor_P(folder,n):
+    tensorP=[]
+    list=get_data_P(folder)
+    for i in list:
+        aux=fill_zeros(i,n)
+        tensorP.append(aux)
+        
+    return tensorP
 
 
-
-folder=input()
+folder=input('folder: ')
+n=300
 # list=make_tensors(folder,200)
-list=get_data_P(folder)
+list=make_tensor_P(folder,n)
 
 for i in list:
     print(i)
-    print(type(i))
+    
