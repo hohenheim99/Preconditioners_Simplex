@@ -98,11 +98,4 @@ def make_tensor_P(folder,n):
     return tensorP
 
 
-folder=input('folder: ')
-n=300
-# list=make_tensors(folder,200)
-list=make_tensor_P(folder,n)
 
-for i in list:
-    print(i)
-    
