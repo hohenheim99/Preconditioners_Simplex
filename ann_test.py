@@ -12,8 +12,8 @@ n=300
 input=make_tensors(folder,n)
 output=make_tensor_P(folder,n)
 
-# input=input[:10]
-# output=output[:10]
+# input=input[:10000]
+# output=output[:10000]
 
 epochs=10
 seed = 7
@@ -24,14 +24,14 @@ Y_train, Y_test = train_test_split(output, test_size=0.2, random_state=seed)
 
 
 model = keras.Sequential([
-        keras.layers.Dense(300,input_shape=(300,), activation="relu"),
+        keras.layers.Dense(100,input_shape=(300,), activation="tanh"),
         keras.layers.Flatten(),
         keras.layers.Dense(300, activation="sigmoid")
 ])
 
 model.compile(loss='mean_absolute_error', optimizer='adam')
 model.summary()
-model.fit(X_test,Y_test, batch_size=100, epochs=epochs)
+model.fit(X_train,Y_train, batch_size=100, epochs=epochs)
 
 
 
