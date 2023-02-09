@@ -1,6 +1,6 @@
 import numpy as np
 import ast
-from interval import interval, inf, imath
+# from interval import interval, inf, imath
 import itertools
 import re
 
@@ -97,5 +97,8 @@ def make_tensor_P(folder,n):
         
     return tensorP
 
+folder='test_results'
 
+list=make_tensors(folder,100)
 
+print(len(list))
