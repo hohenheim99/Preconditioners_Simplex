@@ -5,8 +5,11 @@ import itertools
 import re
 
 def fill_zeros(input_list, N):
-    return input_list + [0] * (int(N) - len(input_list))
+    return input_list + [0.0] * (int(N) - len(input_list))
 
+def pad_list_with_zeros(lists):
+    max_len = max(len(lst) for lst in lists)
+    return [lst + [0.0] * (max_len - len(lst)) for lst in lists]
 
 def get_data_A(path): #Get matrix A, y convertirla en un array de listas
    MatrixA=[]
@@ -61,7 +64,7 @@ def get_data_P(path):
     return MatrixP
 
 
-def make_tensors(folder,n):
+def make_tensors(folder):
     #unir las matrices en un tensor para luego entregarsela al input 
     MatrixA=get_data_A(folder)
     MatrixB=get_data_B(folder)
@@ -70,35 +73,29 @@ def make_tensors(folder,n):
     if len(MatrixA) == len(MatrixB) and len(MatrixB) == len(MatrixX):
         for i in range(len(MatrixA)):
             #MATRIX A
-            mA=np.array(MatrixA[i])
+            mA=MatrixA[i]
             #MATRIX X 
-            mX=np.array(MatrixX[i])
+            mX=MatrixX[i]
             #MATRIX B
-            mB=np.array(MatrixB[i])
+            mB=MatrixB[i]
             
 
             tensor = list(itertools.chain(mA, mB, mX))
-            filled_tensor=fill_zeros(tensor,n)
-            tensorList.append(filled_tensor)
+            
+            #filled_tensor=pad_list_with_zeros(tensor)
+            tensorList.append(tensor)
             #MEDIR EL MAXIMO LEN DE LA LISTA
             
     else:
         print("Error in dataset")
 
+    tensor_pad=pad_list_with_zeros(tensorList)
+    return tensor_pad
 
-    return tensorList
-
-def make_tensor_P(folder,n):
-    tensorP=[]
+def make_tensor_P(folder):
+    
     list=get_data_P(folder)
-    for i in list:
-        aux=fill_zeros(i,n)
-        tensorP.append(aux)
+    tensorP=pad_list_with_zeros(list)
         
     return tensorP
 
-folder='test_results'
-
-list=make_tensors(folder,100)
-
-print(len(list))
