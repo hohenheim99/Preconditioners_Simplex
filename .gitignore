@@ -1,3 +1,6 @@
 test_results/*.txt
 
-benchs_no_hard
+benchs_no_hard/
+.vscode/
+
+colab/
