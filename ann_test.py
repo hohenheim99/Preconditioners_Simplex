@@ -8,12 +8,13 @@ import tensorflow as tf
 
 #Make data and tensors for the input/output
 folder='test_results'
-n=300
-input=make_tensors(folder,n)
-output=make_tensor_P(folder,n)
 
-# input=input[:10000]
-# output=output[:10000]
+input=make_tensors(folder)
+output=make_tensor_P(folder)
+print(len(input[0]))
+print(len(output[0]))
+#input=input[:100000]
+#output=output[:100000]
 
 epochs=10
 seed = 7
@@ -24,16 +25,18 @@ Y_train, Y_test = train_test_split(output, test_size=0.2, random_state=seed)
 
 
 model = keras.Sequential([
-        keras.layers.Dense(100,input_shape=(300,), activation="tanh"),
+        keras.layers.Dense(100,input_shape=(731,), activation="tanh"),
         keras.layers.Flatten(),
-        keras.layers.Dense(300, activation="sigmoid")
+        keras.layers.Dense(1036, activation="sigmoid")
 ])
 
-model.compile(loss='mean_absolute_error', optimizer='adam')
+model.compile(loss='mean_absolute_error', optimizer='adam',metrics=['accuracy'])
 model.summary()
 model.fit(X_train,Y_train, batch_size=100, epochs=epochs)
 
-
+score,acc = model.evaluate(X_test, Y_test,batch_size=100)
+print("Test loss:", score)
+print("Test accuracy:", acc)
 
 
 prediction = model.predict(X_test)

@@ -72,15 +72,14 @@ def make_tensors(folder):
     tensorList=[]
     if len(MatrixA) == len(MatrixB) and len(MatrixB) == len(MatrixX):
         for i in range(len(MatrixA)):
-            #MATRIX A
-            mA=MatrixA[i]
-            #MATRIX X 
-            mX=MatrixX[i]
-            #MATRIX B
-            mB=MatrixB[i]
+            # #MATRIX A
+            # mA=MatrixA[i]
+            # #MATRIX X 
+            # mX=MatrixX[i]
+            # #MATRIX B
+            # mB=MatrixB[i]
             
-
-            tensor = list(itertools.chain(mA, mB, mX))
+            tensor = list(itertools.chain(MatrixA[i], MatrixX[i], MatrixB[i]))
             
             #filled_tensor=pad_list_with_zeros(tensor)
             tensorList.append(tensor)
