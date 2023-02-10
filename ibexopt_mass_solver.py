@@ -31,7 +31,7 @@ def Mass_solver(path):
                             break
             #log reader
             dataFull.append(data)     
-            #os.system("rm test_results/log.txt")
+            os.system("rm test_results/log.txt")
 
                 
         print(dataFull)
@@ -40,12 +40,11 @@ def Mass_solver(path):
             writer = csv.writer(f)
             writer.writerow(header)
             writer.writerows(dataFull)
-                    
+
+
+                   
         
 
-    # os.chdir(path+'/')
-    # os.system("rm *.cov")
-    # print("Archivos .COV borrados. Data almacenada en "+root+"/DS_Matrix[A/B/X/P].txt")
 
 
 path=input("input path folder: ")

@@ -1,4 +1,5 @@
 test_results/*.txt
+test_results/
 
 benchs_no_hard/
 .vscode/
@@ -8,3 +9,5 @@ colab/
 legacy/
 
 __pycache__/
+
+tensors/

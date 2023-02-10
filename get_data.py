@@ -1,8 +1,8 @@
 import numpy as np
 import ast
-# from interval import interval, inf, imath
 import itertools
 import re
+import os
 
 def fill_zeros(input_list, N):
     return input_list + [0.0] * (int(N) - len(input_list))
@@ -98,3 +98,19 @@ def make_tensor_P(folder):
         
     return tensorP
 
+def write_tensor(folder):
+    os.system('mkdir tensors')
+    list_ABX=make_tensors(folder)
+    list_P=make_tensor_P(folder)
+    with open('tensors/input_tensor.txt','w') as tfile:
+        for i in list_ABX:
+            tfile.write(str(i)+'\n')
+    
+    with open('tensors/output_tensor.txt','w') as file:
+        for i in list_P:
+            file.write(str(i)+'\n')
+
+
+
+folder='test_results'
+write_tensor(folder)
