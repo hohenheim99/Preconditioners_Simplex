@@ -112,5 +112,5 @@ def write_tensor(folder):
 
 
 
-folder='test_results'
-write_tensor(folder)
+# folder='test_results'
+# write_tensor(folder)
