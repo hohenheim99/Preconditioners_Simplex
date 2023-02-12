@@ -32,7 +32,6 @@ def make_tensor_P(folder):
     return tensorP
 
 def get_data(path):
-    Matrix=[]
     os.system('mkdir tensors')
     with open(path+'/AXB.txt','r') as file:
         lines=file.read().split('%')
@@ -40,7 +39,6 @@ def get_data(path):
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
-            Matrix.append(list)
             with open('tensors/tensor_input.txt','a') as input:
                 input.write(str(list)+'\n')
 
