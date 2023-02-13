@@ -54,15 +54,24 @@ def get_data(path):
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
             aux.append(list)
-    with open('tensors/tensor_P.txt','a') as output:
+    with open('tensors/tensor_output.txt','a') as output:
         pad_list=pad_list_with_zeros(aux)
         print('output dim',len(pad_list[0]))
         for k in pad_list:
             output.write(str(k)+'\n')
             
 
+def read_data(path):
+    aux=[]
+    with open(path,'r') as file:
+        for line in file:
+            line=line.strip('\n')
+            aux.append(ast.literal_eval(line))
+    return aux
+
+
+
 
 folder='test_results'
 # benchs=input("select folder of benchs: ")
 # Mass_solver(benchs)
-get_data(folder)

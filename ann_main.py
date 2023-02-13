@@ -1,21 +1,20 @@
 from tensorflow import keras
 import numpy as np
-from get_data import *
+from get_data import read_data
 from keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
 #Make data and tensors for the input/output
-folder='test_results'
-
-input=make_tensors(folder)
-input=input[:10000]
-print('succesfull')
-output=make_tensor_P(folder)
+input_path='tensors/tensor_input.txt'
+output_path='tensors/tensor_output.txt'
 
 
-output=output[:10000]
+input=read_data(input_path)
+
+output=read_data(output_path)
+
 
 epochs=20
 seed = 7
@@ -27,10 +26,10 @@ Y_train, Y_test = train_test_split(output, test_size=0.2)
 
 
 model = keras.Sequential([
-        keras.layers.Dense(100,input_shape=(731,),activation="relu"),
+        keras.layers.Dense(100,input_shape=(727,),activation="relu"),
+        keras.layers.Flatten(),
         keras.layers.Dense(64,activation="relu"),
-        # keras.layers.Flatten(),
-        keras.layers.Dense(1036, activation="sigmoid")
+        keras.layers.Dense(686, activation="sigmoid")
 ])
 
 model.compile(loss='mean_absolute_error', optimizer='adam',metrics=['accuracy'])
@@ -44,4 +43,4 @@ print("Test accuracy:", acc)
 
 
 prediction = model.predict(X_test)
-print(prediction[0])
+
