@@ -3,7 +3,7 @@ import ast
 import itertools
 import re
 import os
-from ibexopt_mass_solver import Mass_solver
+# from ibexopt_mass_solver import Mass_solver
 
 def fill_zeros(input_list, N):
     return input_list + [0.0] * (int(N) - len(input_list))
@@ -32,6 +32,7 @@ def make_tensor_P(folder):
     return tensorP
 
 def get_data(path):
+    aux=[]
     os.system('mkdir tensors')
     with open(path+'/AXB.txt','r') as file:
         lines=file.read().split('%')
@@ -39,20 +40,29 @@ def get_data(path):
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
-            with open('tensors/tensor_input.txt','a') as input:
-                input.write(str(list)+'\n')
-
+            aux.append(list)
+    with open('tensors/tensor_input.txt','a') as input:
+        pad_list=pad_list_with_zeros(aux)
+        print('input dim',len(pad_list[0]))
+        for i in pad_list:
+            input.write(str(i)+'\n')
+    aux.clear()
     with open(path+'/DS_P.txt','r') as file2:
         lines=file2.read().split('%')
         for line in lines:
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
-            with open('tensors/tensor_P.txt','a') as output:
-                output.write(str(list)+'\n')
+            aux.append(list)
+    with open('tensors/tensor_P.txt','a') as output:
+        pad_list=pad_list_with_zeros(aux)
+        print('output dim',len(pad_list[0]))
+        for k in pad_list:
+            output.write(str(k)+'\n')
+            
 
 
 folder='test_results'
-benchs=input("select folder of benchs: ")
-Mass_solver(benchs)
+# benchs=input("select folder of benchs: ")
+# Mass_solver(benchs)
 get_data(folder)
