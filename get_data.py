@@ -77,7 +77,7 @@ def read_data(path):
 # folder='test_results'
 
 if __name__ == "__main__":
-    folder=input('folder of raw data')
+    folder=input('folder of raw data: ')
     if exists('tensors/tensor_input.txt') is False and exists('tensors/tensor_input.txt') is False: 
         process_data_results(folder)
     else: 

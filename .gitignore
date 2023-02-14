@@ -7,7 +7,7 @@ benchs_no_hard/
 colab/
 results_medium/
 legacy/
-
+easy_data_tensors/
 __pycache__/
 
 tensors/
