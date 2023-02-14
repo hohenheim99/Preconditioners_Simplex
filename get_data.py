@@ -34,7 +34,7 @@ def make_tensor_P(folder):
 
 def process_data_results(path):
     aux=[]
-    os.system('mkdir tensors')
+    os.system('mkdir '+path+'_tensors')
     with open(path+'/AXB.txt','r') as file:
         lines=file.read().split('%')
         for line in lines:
@@ -42,7 +42,7 @@ def process_data_results(path):
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
             aux.append(list)
-    with open('tensors/tensor_input.txt','a') as input:
+    with open(path+'_tensors/tensor_input.txt','a') as input:
         pad_list=pad_list_with_zeros(aux)
         print('input dim',len(pad_list[0]))
         for i in pad_list:
@@ -55,9 +55,10 @@ def process_data_results(path):
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
             aux.append(list)
-    with open('tensors/tensor_output.txt','a') as output:
+    with open(path+'_tensors/tensor_output.txt','a') as output:
         pad_list=pad_list_with_zeros(aux)
         print('output dim',len(pad_list[0]))
+        print('numbers of inputs/outputs',len(pad_list))
         for k in pad_list:
             output.write(str(k)+'\n')
             
@@ -73,11 +74,11 @@ def read_data(path):
 
 
 
-folder='test_results'
+# folder='test_results'
 
 if __name__ == "__main__":
+    folder=input('folder of raw data')
     if exists('tensors/tensor_input.txt') is False and exists('tensors/tensor_input.txt') is False: 
         process_data_results(folder)
     else: 
         print('tensors files already exist')
-        

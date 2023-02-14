@@ -5,9 +5,11 @@ benchs_no_hard/
 .vscode/
 
 colab/
-
+results_medium/
 legacy/
 
 __pycache__/
 
 tensors/
+
+results_easy/

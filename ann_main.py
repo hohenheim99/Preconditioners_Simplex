@@ -16,7 +16,7 @@ input=read_data(input_path)
 output=read_data(output_path)
 
 
-epochs=20
+epochs=10
 seed = 7
 batchs=50
 np.random.seed(seed)
@@ -28,11 +28,11 @@ Y_train, Y_test = train_test_split(output, test_size=0.2)
 model = keras.Sequential([
         keras.layers.Dense(100,input_shape=(3095,),activation="relu"),
         keras.layers.Flatten(),
-        keras.layers.Dense(100,activation="relu"),
+        keras.layers.Dense(50,activation="relu"),
         keras.layers.Dense(2871, activation="relu")
 ])
 
-model.compile(loss='mean_absolute_error', optimizer='adam',metrics=['accuracy'])
+model.compile(loss='mean_absolute_error', optimizer='rmsprop',metrics=['accuracy'])
 model.summary()
 model.fit(X_train,Y_train, batch_size=batchs, epochs=epochs)
 
