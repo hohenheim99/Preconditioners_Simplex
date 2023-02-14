@@ -3,7 +3,8 @@ import ast
 import itertools
 import re
 import os
-# from ibexopt_mass_solver import Mass_solver
+from os.path import exists
+
 
 def fill_zeros(input_list, N):
     return input_list + [0.0] * (int(N) - len(input_list))
@@ -31,7 +32,7 @@ def make_tensor_P(folder):
     tensorP=pad_list_with_zeros(list)
     return tensorP
 
-def get_data(path):
+def process_data_results(path):
     aux=[]
     os.system('mkdir tensors')
     with open(path+'/AXB.txt','r') as file:
@@ -73,5 +74,10 @@ def read_data(path):
 
 
 folder='test_results'
-# benchs=input("select folder of benchs: ")
-# Mass_solver(benchs)
+
+if __name__ == "__main__":
+    if exists('tensors/tensor_input.txt') is False and exists('tensors/tensor_input.txt') is False: 
+        process_data_results(folder)
+    else: 
+        print('tensors files already exist')
+        

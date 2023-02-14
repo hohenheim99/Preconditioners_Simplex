@@ -26,10 +26,10 @@ Y_train, Y_test = train_test_split(output, test_size=0.2)
 
 
 model = keras.Sequential([
-        keras.layers.Dense(100,input_shape=(727,),activation="relu"),
+        keras.layers.Dense(100,input_shape=(3095,),activation="relu"),
         keras.layers.Flatten(),
-        keras.layers.Dense(64,activation="relu"),
-        keras.layers.Dense(686, activation="sigmoid")
+        keras.layers.Dense(100,activation="relu"),
+        keras.layers.Dense(2871, activation="relu")
 ])
 
 model.compile(loss='mean_absolute_error', optimizer='adam',metrics=['accuracy'])
