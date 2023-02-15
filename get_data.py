@@ -4,6 +4,7 @@ import itertools
 import re
 import os
 from os.path import exists
+import pandas as pd
 
 
 def fill_zeros(input_list, N):
@@ -88,12 +89,30 @@ def count_variables(path):
         
     return variables_n
 
+def read_data_n(path,n):
+    aux=[]
+    with open(path,'r') as myfile:
+        head = [next(myfile) for x in range(n)]
+        for line in head:
+            line=line.strip('\n')
+            aux.append(ast.literal_eval(line))
+    return aux
 
-# folder='test_results'
+
+
+
+
 
 if __name__ == "__main__":
-    folder=input('folder of raw data: ')
-    if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
-        process_data_results(folder)
-    else: 
-        print('tensors files already exist')
+    # folder=input('folder of raw data: ')
+    # if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
+    #     process_data_results(folder)
+    # else: 
+    #     print('tensors files already exist')
+    path='easy_data_tensors/tensor_input.txt'
+    list=read_data_n(path,10000)
+
+    print('len list',len(list))
+    print('len list 0',len(list[0]))
+    print(type(list))
+    print(type(list[0]))
