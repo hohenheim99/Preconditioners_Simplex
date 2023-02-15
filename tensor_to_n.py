@@ -21,7 +21,11 @@ def count_variables(path):
     return variables_n
 
 if __name__ == "__main__":
-    path='test_results/DS_P.txt'
-    list=count_variables(path)
-    for i in list:
-        print(i)
+    list=count_variables('test_results/DS_P.txt')
+    list2=count_variables('test_results/AXB.txt')
+    with open('test_results/numbers.txt','a') as file:
+        for i,k in zip(list2,list):
+            try: aux=(k*100)/i
+
+            except: aux=0
+            file.write(str(i)+' '+str(k)+' '+str(aux)+'\n')
