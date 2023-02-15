@@ -35,6 +35,7 @@ def make_tensor_P(folder):
 def process_data_results(path):
     aux=[]
     os.system('mkdir '+path+'_tensors')
+    #INPUTS
     with open(path+'/AXB.txt','r') as file:
         lines=file.read().split('%')
         for line in lines:
@@ -48,6 +49,8 @@ def process_data_results(path):
         for i in pad_list:
             input.write(str(i)+'\n')
     aux.clear()
+    pad_list.clear()
+    #OUTPUTS
     with open(path+'/DS_P.txt','r') as file2:
         lines=file2.read().split('%')
         for line in lines:
@@ -61,7 +64,6 @@ def process_data_results(path):
         print('numbers of inputs/outputs',len(pad_list))
         for k in pad_list:
             output.write(str(k)+'\n')
-            
 
 def read_data(path):
     aux=[]
@@ -71,14 +73,27 @@ def read_data(path):
             aux.append(ast.literal_eval(line))
     return aux
 
-
+def count_variables(path):
+    variables_n=[]
+    with open(path,'r') as file:
+        lines=file.read().split('%')
+        for line in lines:
+            line=line.strip()
+            if '()' in line:
+                aux=0
+                variables_n.append(aux)
+            else:
+                aux=len(line.splitlines())
+                variables_n.append(aux)
+        
+    return variables_n
 
 
 # folder='test_results'
 
 if __name__ == "__main__":
     folder=input('folder of raw data: ')
-    if exists('tensors/tensor_input.txt') is False and exists('tensors/tensor_input.txt') is False: 
+    if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
         process_data_results(folder)
     else: 
         print('tensors files already exist')
