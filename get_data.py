@@ -98,21 +98,23 @@ def read_data_n(path,n):
             aux.append(ast.literal_eval(line))
     return aux
 
+def read_data_even(path,n):
+    aux=[]
+    with open(path,'r') as myfile:
+        for line in myfile:
+            if len(line)<=n:
+                line=line.strip('\n')
+                aux.append(ast.literal_eval(line))
+    return aux
+
 
 
 
 
 
 if __name__ == "__main__":
-    # folder=input('folder of raw data: ')
-    # if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
-    #     process_data_results(folder)
-    # else: 
-    #     print('tensors files already exist')
-    path='easy_data_tensors/tensor_input.txt'
-    list=read_data_n(path,10000)
-
-    print('len list',len(list))
-    print('len list 0',len(list[0]))
-    print(type(list))
-    print(type(list[0]))
+    folder=input('folder of raw data: ')
+    if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
+        process_data_results(folder)
+    else: 
+        print('tensors files already exist')

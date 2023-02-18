@@ -21,10 +21,11 @@ def count_variables(path):
     return variables_n
 
 if __name__ == "__main__":
-    list=count_variables('test_results/DS_P.txt')
-    list2=count_variables('test_results/AXB.txt')
-    with open('test_results/numbers.txt','a') as file:
-        for i,k in zip(list2,list):
+    path=input('folder: ')
+    AXB=count_variables(path+'/AXB.txt')
+    P=count_variables(path+'/DS_P.txt')
+    with open(path+'/ratio.txt','a') as file:
+        for i,k in zip(AXB,P):
             try: aux=(k*100)/i
 
             except: aux=0
