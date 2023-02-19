@@ -22,7 +22,7 @@ def count_variables(path):
 
 if __name__ == "__main__":
     path=input('folder: ')
-    AXB=count_variables(path+'/AXB.txt')
+    AXB=count_variables(path+'/DS_MatrixA.txt')
     P=count_variables(path+'/DS_P.txt')
     with open(path+'/ratio.txt','a') as file:
         for i,k in zip(AXB,P):

@@ -1,0 +1,15 @@
+file,seed,nodes,time,linearization time,simplex time
+benchs_dataset/ex6_2_8.bch,1,31780,19.00674,5.856541,4.048842
+benchs_dataset/chembis.bch,1,482334,680.087,332.6486,81.05636
+benchs_dataset/chem-1.bch,1,904472,1180.567,611.8478,147.6053
+benchs_dataset/chem.bch,1,904472,1102.952,574.9422,144.8665
+benchs_dataset/ex6_2_10.bch,1,330960,284.9877,84.07325,92.7986
+benchs_dataset/himmel16.bch,1,4592,14.104,6.174536,1.107314
+benchs_dataset/ex6_2_6.bch,1,59640,43.03733,13.70788,8.910178
+benchs_dataset/ex14_2_7.bch,1,11092,26.35953,5.631977,11.35128
+benchs_dataset/ex8_4_4bis.bch,1,79388,56.52108,23.01148,11.40775
+benchs_dataset/ex6_2_9.bch,1,21500,15.22805,4.847387,3.606053
+benchs_dataset/ex6_2_11.bch,1,25892,15.81846,5.41134,2.940408
+benchs_dataset/sambal.bch,1,553304,1711.676,984.2086,203.0815
+benchs_dataset/ex6_1_3.bch,1,16958,56.41095,27.03546,8.879523
+benchs_dataset/ex7_2_3.bch,1,32610,13.88787,6.5974,0.7445403
