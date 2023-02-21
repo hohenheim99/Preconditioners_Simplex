@@ -109,6 +109,22 @@ def count_variables_n(path,n): #count number of rows of P matrix
             count+=1
     return variables_n
 
+def count_variables_bool(path): #count if simplex worked or not
+    variables_n=[]
+    with open(path,'r') as file:
+        lines=file.read().split('%')
+        for line in lines:
+            line=line.strip()
+            if '()' in line:
+                aux=0
+                variables_n.append(aux)
+            else:
+                aux=1
+                variables_n.append(aux)
+        
+    return variables_n
+
+
 def read_data_n(path,n): #Read N lines of the file 
     aux=[]
     with open(path,'r') as myfile:
