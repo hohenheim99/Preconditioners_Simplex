@@ -6,6 +6,8 @@ import os
 from os.path import exists
 import pandas as pd
 
+def convert_to_list(int_list):
+    return [[num] for num in int_list]
 
 def fill_zeros(input_list, N):
     return input_list + [0.0] * (int(N) - len(input_list))
