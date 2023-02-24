@@ -6,6 +6,7 @@ import os
 from os.path import exists
 import pandas as pd
 from datetime import datetime,timezone
+import pytz
 
 
 def convert_to_list(int_list):
@@ -163,8 +164,8 @@ def save_model_summary(folder,config,acti_funs,model):
 
 
 def save_all(path,config,acti_funs,model,data):
-    # date_time=datetime.now().strftime('%d-%m-%Y_%H:%M')
-    date_time=datetime.now(timezone.utc).astimezone().strftime('%d-%m-%Y_%H:%M')
+    tz = pytz.timezone('Chile/Continental')
+    date_time=datetime.now(timezone.utc).astimezone(tz=tz).strftime('%d-%m-%Y_%H:%M')
     folder=path+'/Results_'+date_time
     os.system('mkdir '+folder)
     make_json_history(folder,data)
