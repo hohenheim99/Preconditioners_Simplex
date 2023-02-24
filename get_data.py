@@ -5,6 +5,8 @@ import re
 import os
 from os.path import exists
 import pandas as pd
+from datetime import datetime
+
 
 def convert_to_list(int_list):
     return [[num] for num in int_list]
@@ -144,17 +146,31 @@ def read_data_even(path,n):
     return aux
 
 
-def make_json_history(info,data):
+def make_json_history(folder,data):
     hist_df = pd.DataFrame(data)
-    hist_json_file = info+'history.json' 
+    hist_json_file =folder+'/history.json' 
     with open(hist_json_file, mode='w') as f:
         hist_df.to_json(f)
 
-def save_model_summary(info,acti_funs,model):
-    with open(info + '__report.txt','w') as fh:
-        # Pass the file handle in as a lambda function to make it callable
+def save_model_summary(folder,config,acti_funs,model):
+    with open(folder+'/config.txt','w') as fh:
+        for key, value in config.items(): 
+            fh.write('%s: %s\n' % (key, value))
+        # fh.write("\n".join(str(item) for item in config))
         model.summary(print_fn=lambda x: fh.write(x + '\n'))
         fh.write("\n".join(str(item) for item in acti_funs))
+
+
+
+def save_all(path,config,acti_funs,model,data):
+    date_time=datetime.now().strftime('%d-%m-%Y_%H:%M')
+    folder=path+'/Results_'+date_time
+    os.system('mkdir '+folder)
+    make_json_history(folder,data)
+    save_model_summary(folder,config,acti_funs,model)
+
+
+
 
 
 if __name__ == "__main__":
