@@ -144,6 +144,18 @@ def read_data_even(path,n):
     return aux
 
 
+def make_json_history(info,data):
+    hist_df = pd.DataFrame(data)
+    hist_json_file = info+'history.json' 
+    with open(hist_json_file, mode='w') as f:
+        hist_df.to_json(f)
+
+def save_model_summary(info,acti_funs,model):
+    with open(info + '__report.txt','w') as fh:
+        # Pass the file handle in as a lambda function to make it callable
+        model.summary(print_fn=lambda x: fh.write(x + '\n'))
+        fh.write("\n".join(str(item) for item in acti_funs))
+
 
 if __name__ == "__main__":
     folder=input('folder of raw data: ')
