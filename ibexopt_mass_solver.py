@@ -5,6 +5,7 @@ import csv
 #--------------CONFIGURATION HALL -------------
 seed=1
 timeout=3600
+precision=0.001
 # ---------------------------------------------
 def Mass_solver(path):
     i=0
@@ -15,7 +16,7 @@ def Mass_solver(path):
         for name in files:
             file=os.path.join(path, name)
             print(file)
-            os.system("ibexopt --random-seed="+str(seed)+" --timeout="+str(timeout)+" "+file+" >> test_results/log.txt")
+            os.system("ibexopt --random-seed="+str(seed)+" --abs-eps-f="+str(precision)+" --timeout="+str(timeout)+" "+file+" >> test_results/log.txt")
             #log reader
             with open("test_results/log.txt") as log:
                 obj=["cells","time","simplex","linearization"]

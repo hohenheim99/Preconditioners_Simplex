@@ -13,8 +13,4 @@ __pycache__/
 tensors/
 
 results_easy/
-dataset/AXB.txt
-dataset/DS_P.txt
-dataset/ratio.txt
-dataset/DS_MatrixA.txt
-dataset/P_bool.txt
+dataset/

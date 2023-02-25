@@ -161,15 +161,18 @@ def save_model_summary(folder,config,acti_funs,model):
         model.summary(print_fn=lambda x: fh.write(x + '\n'))
         fh.write("\n".join(str(item) for item in acti_funs))
 
+def save_graphs(folder,figure1,figure2):
+    figure1.savefig(folder+'/acc_vs_epochs.png')
+    figure2.savefig(folder+'/loss_vs_epochs.png')
 
-
-def save_all(path,config,acti_funs,model,data):
+def save_all(path,config,acti_funs,model,data,figure1,figure2):
     tz = pytz.timezone('Chile/Continental')
     date_time=datetime.now(timezone.utc).astimezone(tz=tz).strftime('%d-%m-%Y_%H:%M')
     folder=path+'/Results_'+date_time
     os.system('mkdir '+folder)
     make_json_history(folder,data)
     save_model_summary(folder,config,acti_funs,model)
+    save_graphs(folder,figure1,figure2)
 
 
 
