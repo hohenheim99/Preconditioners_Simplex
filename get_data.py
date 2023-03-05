@@ -50,8 +50,8 @@ def process_data_results(path): #take raw data results from Ibex, and make tenso
             list= [float(i) for i in list]
             aux.append(list)
     with open(path+'_tensors/tensor_input.txt','a') as input:
-        # pad_list=pad_list_with_zeros(aux)
-        pad_list=aux
+        pad_list=pad_list_with_zeros(aux)
+        # pad_list=aux
         print('input dim',len(pad_list[0]))
         for i in aux:
             input.write(str(i)+'\n')
@@ -66,10 +66,10 @@ def process_data_results(path): #take raw data results from Ibex, and make tenso
             list= [float(i) for i in list]
             aux.append(list)
     with open(path+'_tensors/tensor_output.txt','a') as output:
-        # pad_list=pad_list_with_zeros(aux)
+        pad_list=pad_list_with_zeros(aux)
         print('output dim',len(pad_list[0]))
         print('numbers of inputs/outputs',len(pad_list))
-        for k in aux:
+        for k in pad_list:
             output.write(str(k)+'\n')
 
 def read_data(path): #Read all the data
@@ -162,11 +162,11 @@ def save_model_summary(folder,config,acti_funs,model):
         fh.write("\n".join(str(item) for item in acti_funs))
 
 
-def save_all(date_time,path,config,acti_funs,model,data):
+def save_all(folder,config,acti_funs,model,data):
     # tz = pytz.timezone('Chile/Continental')
     # date_time=datetime.now(timezone.utc).astimezone(tz=tz).strftime('%d-%m-%Y_%H:%M')
-    folder=path+'/Results_'+date_time
-    os.system('mkdir '+folder)
+    # folder=path+'/Results_'+date_time
+    # os.system('mkdir '+folder)
     make_json_history(folder,data)
     save_model_summary(folder,config,acti_funs,model)
     
@@ -181,3 +181,5 @@ if __name__ == "__main__":
         process_data_results(folder)
     else: 
         print('tensors files already exist')
+
+
