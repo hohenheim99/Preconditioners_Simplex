@@ -32,7 +32,7 @@ def Mass_solver(path):
                             break
             #log reader
             dataFull.append(data)     
-            os.system("rm test_results/log.txt")
+            # os.system("rm test_results/log.txt")
 
                 
         print(dataFull)
