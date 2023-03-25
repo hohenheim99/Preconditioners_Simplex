@@ -36,11 +36,13 @@ def Mass_solver(path):
 
                 
         print(dataFull)
-        with open("benchmarkData.csv", "w", newline="") as f:
-            header=["file","seed","nodes","time","linearization time","simplex time"]
-            writer = csv.writer(f)
-            writer.writerow(header)
-            writer.writerows(dataFull)
+        choice=input("Create csv? (Y / N): ")
+        if choice.lower() == "y":
+            with open("benchmarkData.csv", "w", newline="") as f:
+                header=["file","seed","nodes","time","linearization time","simplex time"]
+                writer = csv.writer(f)
+                writer.writerow(header)
+                writer.writerows(dataFull)
 
 
                    
