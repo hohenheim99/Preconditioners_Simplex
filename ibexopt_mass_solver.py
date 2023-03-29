@@ -16,7 +16,7 @@ def Mass_solver(path):
         for name in files:
             file=os.path.join(path, name)
             print(file)
-            os.system("ibexopt --random-seed="+str(seed)+" --abs-eps-f="+str(precision)+" --timeout="+str(timeout)+" "+file+" >> test_results/log.txt")
+            os.system("ibexopt --random-seed="+str(seed)+" --abs-eps-f="+str(precision)+"  --rel-eps-f="+str(precision)+" --timeout="+str(timeout)+" "+file+" >> test_results/log.txt")
             #log reader
             with open("test_results/log.txt") as log:
                 obj=["cells","time","simplex","linearization"]

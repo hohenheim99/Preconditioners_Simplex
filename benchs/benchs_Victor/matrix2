@@ -1,0 +1,17 @@
+variables
+
+x(1) in [0, inf]
+x(2) in [-inf, inf]
+x(3) in [0, inf]
+x(4) in [-inf, 0]
+x(5) in [-inf, inf]
+x(6) in [-inf, 0]
+
+minimize (((x(1)-x(4))^2+(2*(x(2)-x(5))^2))+(x(3)-x(6))^2)
+
+constraints
+
+((x(1)*x(3))-x(2)^2)>=0
+
+((x(4)*x(6))-x(5)^2)<=0
+

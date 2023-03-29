@@ -1,0 +1,23 @@
+variables
+
+x(1) in [-100, 100]
+x(2) in [-100, 100]
+x(3) in [-100, 100]
+x(4) in [-100, 100]
+x(5) in [-100, 100]
+x(6) in [-100, 100]
+x(7) in [-100, 100]
+x(8) in [-100, 100]
+x(9) in [-100, 100]
+x(10) in [-100, 100]
+
+minimize ((((((((((exp(x(1))*((x(1)+-6.089)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10))))))+(exp(x(2))*((x(2)+-17.164)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(3))*((x(3)+-34.054)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(4))*((x(4)+-5.914)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(5))*((x(5)+-24.721)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(6))*((x(6)+-14.986)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(7))*((x(7)+-24.1)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(8))*((x(8)+-10.708)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(9))*((x(9)+-26.662)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))+(exp(x(10))*((x(10)+-22.179)-log((((((((((exp(x(1))+exp(x(2)))+exp(x(3)))+exp(x(4)))+exp(x(5)))+exp(x(6)))+exp(x(7)))+exp(x(8)))+exp(x(9)))+exp(x(10)))))))
+
+constraints
+
+(((((exp(x(1))+(2*exp(x(2))))+(2*exp(x(3))))+exp(x(6)))+exp(x(10)))-2)=0
+
+((((exp(x(4))+(2*exp(x(5))))+exp(x(6)))+exp(x(7)))-1)=0
+
+(((((exp(x(3))+exp(x(7)))+exp(x(8)))+(2*exp(x(9))))+exp(x(10)))-1)=0
+

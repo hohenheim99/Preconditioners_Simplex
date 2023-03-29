@@ -1,0 +1,14 @@
+variables
+
+x(1) in [-inf, inf]
+x(2) in [-inf, inf]
+x(3) in [-inf, inf]
+
+minimize x(3)
+
+constraints
+
+(((50*((x(1)-x(2)^4)+-1)^2)+(3*x(1)^2))-x(3))<=0
+
+(((50*((x(1)-x(2)^4)+1)^2)+(3*x(1)^2))-x(3))<=0
+

@@ -1,0 +1,14 @@
+variables
+
+x(1) in [-inf, inf]
+x(2) in [-inf, inf]
+x(3) in [-inf, inf]
+
+minimize x(3)
+
+constraints
+
+(exp(((x(2)+-1)^2+(0.001000000000000001*x(1)^2)))-x(3))<=0
+
+(exp(((x(2)+1)^2+(0.001000000000000001*x(1)^2)))-x(3))<=0
+
