@@ -1,17 +1,18 @@
 variables
 
-x(1) in [0, inf]
-x(2) in [-inf, inf]
-x(3) in [0, inf]
-x(4) in [-inf, 0]
-x(5) in [-inf, inf]
-x(6) in [-inf, 0]
+x1 in [0, oo];
+x2 in [-oo, oo];
+x3 in [0, oo];
+x4 in [-oo, 0];
+x5 in [-oo, oo];
+x6 in [-oo, 0];
 
-minimize (((x(1)-x(4))^2+(2*(x(2)-x(5))^2))+(x(3)-x(6))^2)
+minimize (((x1-x4)^2+(2*(x2-x5)^2))+(x3-x6)^2)
 
 constraints
 
-((x(1)*x(3))-x(2)^2)>=0
+((x1*x3)-x2^2)>=0;
 
-((x(4)*x(6))-x(5)^2)<=0
+((x4*x6)-x5^2)<=0;
 
+end

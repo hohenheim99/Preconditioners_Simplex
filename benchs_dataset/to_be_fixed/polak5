@@ -1,14 +1,16 @@
 variables
 
-x(1) in [-inf, inf]
-x(2) in [-inf, inf]
-x(3) in [-inf, inf]
+x1 in [-oo, oo];
+x2 in [-oo, oo];
+x3 in [-oo, oo];
 
-minimize x(3)
+minimize x3
 
 constraints
 
-(((50*((x(1)-x(2)^4)+-1)^2)+(3*x(1)^2))-x(3))<=0
+(((50*((x1-x2^4)+-1)^2)+(3*x1^2))-x3)<=0;
 
-(((50*((x(1)-x(2)^4)+1)^2)+(3*x(1)^2))-x(3))<=0
+(((50*((x1-x2^4)+1)^2)+(3*x1^2))-x3)<=0;
+
+end
 
