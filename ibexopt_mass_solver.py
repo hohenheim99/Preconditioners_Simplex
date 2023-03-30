@@ -4,7 +4,7 @@ import csv
 
 #--------------CONFIGURATION HALL -------------
 seed=1
-timeout=5
+timeout=1
 precision=0.001
 # ---------------------------------------------
 def Mass_solver(path):
