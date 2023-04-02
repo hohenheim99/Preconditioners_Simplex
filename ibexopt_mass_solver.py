@@ -4,7 +4,7 @@ import csv
 
 #--------------CONFIGURATION HALL -------------
 seed=1
-timeout=1
+timeout=1800
 precision=0.001
 # ---------------------------------------------
 def Mass_solver(path):
@@ -38,7 +38,7 @@ def Mass_solver(path):
         print(dataFull)
         choice=input("Create csv? (Y / N): ")
         if choice.lower() == "y":
-            with open("benchmarkData.csv", "w", newline="") as f:
+            with open("benchmarkData.csv", "a", newline="") as f:
                 header=["file","seed","nodes","time","linearization time","simplex time"]
                 writer = csv.writer(f)
                 writer.writerow(header)
