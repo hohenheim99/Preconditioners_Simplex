@@ -1,11 +1,11 @@
 variables
 
-x1 in [0, 1e-9];
-x2 in [-1e-9, 1e-9];
-x3 in [0, 1e-9];
-x4 in [-1e-9, 0];
-x5 in [-1e-9, 1e-9];
-x6 in [-1e-9, 0];
+x1 in [0, 1e9];
+x2 in [-1e9, 1e9];
+x3 in [0, 1e9];
+x4 in [-1e9, 0];
+x5 in [-1e9, 1e9];
+x6 in [-1e9, 0];
 
 minimize (((x1-x4)^2+(2*(x2-x5)^2))+(x3-x6)^2)
 

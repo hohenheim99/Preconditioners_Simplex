@@ -1,8 +1,8 @@
 variables
 
-x1 in [-1e-9, 1e-9];
-x2 in [-1e-9, 1e-9];
-x3 in [-1e-9, 1e-9];
+x1 in [-1e9, 1e9];
+x2 in [-1e9, 1e9];
+x3 in [-1e9, 1e9];
 
 minimize x3
 
