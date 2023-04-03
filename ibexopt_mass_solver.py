@@ -4,7 +4,7 @@ import csv
 
 #--------------CONFIGURATION HALL -------------
 seed=1
-timeout=1800
+timeout=3600
 precision=0.001
 # ---------------------------------------------
 def Mass_solver(path):
@@ -32,11 +32,12 @@ def Mass_solver(path):
                             break
             #log reader
             dataFull.append(data)     
-            # os.system("rm test_results/log.txt")
+            os.system("rm test_results/log.txt")
 
                 
         print(dataFull)
-        choice=input("Create csv? (Y / N): ")
+        # choice=input("Create csv? (Y / N): ")
+        choice = "y"
         if choice.lower() == "y":
             with open("benchmarkData.csv", "a", newline="") as f:
                 header=["file","seed","nodes","time","linearization time","simplex time"]
