@@ -22,17 +22,14 @@ def pad_list_with_zeros(lists):
 
 def read_data_P(path):
     aux=[]
-   
     with open(path+'/DS_P.txt','r') as file:
         for line in file:
-            if line == '\n': break
+            # if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
             print(list)
             aux.append(list)
     return aux     
-
-
 
 
 def read_data_AXB(path):
@@ -54,9 +51,6 @@ def read_data(path): #Read all the data
             line=line.strip('\n')
             aux.append(ast.literal_eval(line))
     return aux
-
-
-
 
 
 def read_data_n(path,n): #Read N lines of the file 
@@ -102,7 +96,7 @@ if __name__ == "__main__":
     folder=input('folder of raw data: ')
     
     # process_data_results_AXB(folder)
-    process_data_results_P(folder)
+  
    
 
 
