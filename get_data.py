@@ -19,58 +19,33 @@ def pad_list_with_zeros(lists):
     max_len = max(len(lst) for lst in lists)
     return [lst + [0.0] * (max_len - len(lst)) for lst in lists]
 
-def get_data_P(path): #Reads data from data results
-    MatrixP=[]
-    with open(path+'/DS_P.txt','r') as file:
-        lines = file.read().split("%")
-        for line in lines:
-            if line == '\n': break
-            aux=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
-            try:
-                aux = [float(i) for i in aux]
-            except ValueError:
-                aux=0 #for when is empty P
-            MatrixP.append(aux)
-    return MatrixP
 
-def make_tensor_P(folder): #Make tensors and filled with zeroes the P results. Depricated
-    list=get_data_P(folder)
-    tensorP=pad_list_with_zeros(list)
-    return tensorP
-
-def process_data_results(path): #take raw data results from Ibex, and make tensors in form of list. Also fill with zeroes until the max len value
+def read_data_AXB(path):
     aux=[]
-    os.system('mkdir '+path+'_tensors')
-    #INPUTS
+   
+    with open(path+'/DS_P.txt','r') as file:
+        for line in file:
+            if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            print(list)
+            aux.append(list)
+    return aux     
+
+
+
+
+def read_data_AXB(path):
+    aux=[]
     with open(path+'/AXB.txt','r') as file:
-        lines=file.read().split('%')
-        for line in lines:
+        for line in file:
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
+            print(list)
             aux.append(list)
-    with open(path+'_tensors/tensor_input.txt','a') as input:
-        pad_list=pad_list_with_zeros(aux)
-        # pad_list=aux
-        print('input dim',len(pad_list[0]))
-        for i in aux:
-            input.write(str(i)+'\n')
-    aux.clear()
-    pad_list.clear()
-    #OUTPUTS
-    with open(path+'/DS_P.txt','r') as file2:
-        lines=file2.read().split('%')
-        for line in lines:
-            if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
-            list= [float(i) for i in list]
-            aux.append(list)
-    with open(path+'_tensors/tensor_output.txt','a') as output:
-        pad_list=pad_list_with_zeros(aux)
-        print('output dim',len(pad_list[0]))
-        print('numbers of inputs/outputs',len(pad_list))
-        for k in pad_list:
-            output.write(str(k)+'\n')
+    return aux     
+
 
 def read_data(path): #Read all the data
     aux=[]
@@ -80,52 +55,8 @@ def read_data(path): #Read all the data
             aux.append(ast.literal_eval(line))
     return aux
 
-def count_variables(path): #count number of rows of P matrix
-    variables_n=[]
-    with open(path,'r') as file:
-        lines=file.read().split('%')
-        for line in lines:
-            line=line.strip()
-            if '()' in line:
-                aux=0
-                variables_n.append(aux)
-            else:
-                aux=len(line.splitlines())
-                variables_n.append(aux)
-        
-    return variables_n
 
-def count_variables_n(path,n): #count number of rows of P matrix
-    variables_n=[]
-    count=0
-    with open(path,'r') as file:
-        lines=file.read().split('%')
-        while count < n:
-            for line in lines:
-                line=line.strip()
-                if '()' in line:
-                    aux=0
-                    variables_n.append(aux)
-                else:
-                    aux=len(line.splitlines())
-                    variables_n.append(aux)
-            count+=1
-    return variables_n
 
-def count_variables_bool(path): #count if simplex worked or not
-    variables_n=[]
-    with open(path,'r') as file:
-        lines=file.read().split('%')
-        for line in lines:
-            line=line.strip()
-            if '()' in line:
-                aux=0
-                variables_n.append(aux)
-            else:
-                aux=1
-                variables_n.append(aux)
-        
-    return variables_n
 
 
 def read_data_n(path,n): #Read N lines of the file 
@@ -137,14 +68,6 @@ def read_data_n(path,n): #Read N lines of the file
             aux.append(ast.literal_eval(line))
     return aux
 
-def read_data_even(path,n):
-    aux=[]
-    with open(path,'r') as myfile:
-        for line in myfile:
-            line=line.strip('\n')
-            if len(line)<=n:
-                aux.append(ast.literal_eval(line))
-    return aux
 
 
 def make_json_history(folder,data):
@@ -177,9 +100,9 @@ def save_all(folder,config,acti_funs,model,data):
 
 if __name__ == "__main__":
     folder=input('folder of raw data: ')
-    if exists(folder+'/tensor_input.txt') is False and exists(folder+'/tensor_input.txt') is False: 
-        process_data_results(folder)
-    else: 
-        print('tensors files already exist')
+    
+    # process_data_results_AXB(folder)
+    process_data_results_P(folder)
+   
 
 
