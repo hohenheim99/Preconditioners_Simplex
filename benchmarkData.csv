@@ -1,3 +1,0 @@
-file,seed,nodes,time,linearization time,simplex time
-single_test/synthes1.bch,1,28,0.03383601,0.01475441,0.001895401
-single_test/ex7_2_3.bch,1,32610,15.32668,6.657154,0.7307702

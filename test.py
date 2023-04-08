@@ -15,3 +15,17 @@ def read_data_AXB(path):
             
 
 
+def read_data_P(path):
+    aux=[]
+    with open(path+'/DS_P.txt','r') as file:
+        for line in file:
+            if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            print(list)
+            aux.append(list)
+    return aux     
+
+
+
+read_data_P("test_results")

@@ -20,7 +20,7 @@ def pad_list_with_zeros(lists):
     return [lst + [0.0] * (max_len - len(lst)) for lst in lists]
 
 
-def read_data_AXB(path):
+def read_data_P(path):
     aux=[]
    
     with open(path+'/DS_P.txt','r') as file:
