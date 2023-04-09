@@ -27,7 +27,6 @@ def read_data_P(path):
             # if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
-            print(list)
             aux.append(list)
     return aux     
 
@@ -39,28 +38,33 @@ def read_data_AXB(path):
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
             list= [float(i) for i in list]
-            print(list)
             aux.append(list)
     return aux     
 
 
-def read_data(path): #Read all the data
-    aux=[]
-    with open(path,'r') as file:
-        for line in file:
-            line=line.strip('\n')
-            aux.append(ast.literal_eval(line))
-    return aux
 
 
-def read_data_n(path,n): #Read N lines of the file 
+def read_data_AXB_n(path,n):
     aux=[]
-    with open(path,'r') as myfile:
-        head = [next(myfile) for x in range(n)]
+    with open(path+'/AXB.txt','r') as file:
+        head= [next(file) for x in range(n)]
         for line in head:
-            line=line.strip('\n')
-            aux.append(ast.literal_eval(line))
-    return aux
+            if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            aux.append(list)
+    return aux  
+
+def read_data_P_n(path,n):
+    aux=[]
+    with open(path+'/DS_P.txt','r') as file:
+        head= [next(file) for x in range(n)]
+        for line in head:
+            # if line == '\n': break
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list= [float(i) for i in list]
+            aux.append(list)
+    return aux     
 
 
 
@@ -92,11 +96,7 @@ def save_all(folder,config,acti_funs,model,data):
 
 
 
-if __name__ == "__main__":
-    folder=input('folder of raw data: ')
-    
-    # process_data_results_AXB(folder)
-  
+
    
 
 
