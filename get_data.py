@@ -9,10 +9,8 @@ from datetime import datetime,timezone
 import pytz
 
 
-def convert_to_list(int_list):
-    return [[num] for num in int_list]
 
-def fill_zeros(input_list, N):
+def fill_zeros(input_list, N): #depricated
     return input_list + [0.0] * (int(N) - len(input_list))
 
 def pad_list_with_zeros(lists):

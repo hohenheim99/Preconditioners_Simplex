@@ -1,32 +1,30 @@
 import os
 import numpy as np
 import re
-
-def get_change(path):
-    pass
+from get_data import read_data_P_n
 
 def count_variables(path):
     variables_n=[]
     with open(path,'r') as file:
-        lines=file.read().split('%')
-        lines.pop()
-        for line in lines:
+        for line in file:
             line=line.strip()
             if '()' in line:
                 aux=0
                 variables_n.append(aux)
             else:
-                # temp=line.splitlines()
-                # try: print(temp.pop())
-                # except: pass
-                aux=len(line.splitlines())
+                #aux=len(line.splitlines())
+                aux=1
                 variables_n.append(aux)
     
     return variables_n
 
-if __name__ == "__main__":
-    path=input('folder: ')
-    P=count_variables(path+'/DS_P.txt')
-    with open(path+'/ratio.txt','a') as file:
-        for i in P:
-            file.write(str(i)+'\n')
+def check_P(path,n):
+    input=read_data_P_n(path,n)
+    variables_n=[]
+    for i in input:
+        if bool(i):
+            variables_n.append(1)
+        else:
+            variables_n.append(0)
+    return variables_n
+

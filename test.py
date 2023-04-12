@@ -1,29 +1,21 @@
 import os
 import re
 import ast
-
-
-def read_data_P_n(path,n):
-    aux=[]
-    with open(path+'/DS_P.txt','r') as file:
-        head= [next(file) for x in range(n)]
-        for line in head:
-            # if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
-            list= [float(i) for i in list]
-            aux.append(list)
-    return aux     
+import get_data
 
 
 
-
+def check_P(path,n):
+    input=read_data_P_n("test_results",10000)
+    variables_n=[]
+    for i in input:
+        if bool(i):
+            variables_n.append(1)
+        else:
+            variables_n.append(0)
+    return variables_n
 
 
 
 
 
-
-# for i,k in zip(input,output):
-#     print(i)
-#     print(k)
-#     print("%")
