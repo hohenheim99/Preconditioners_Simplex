@@ -18,23 +18,23 @@ def pad_list_with_zeros(lists):
     return [lst + [0.0] * (max_len - len(lst)) for lst in lists]
 
 
-def read_data_P(path):
+def read_data_P(path): #read all the dataset
     aux=[]
     with open(path+'/DS_P.txt','r') as file:
         for line in file:
             # if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
             list= [float(i) for i in list]
             aux.append(list)
     return aux     
 
 
-def read_data_AXB(path):
+def read_data_AXB(path): #read all the dataset
     aux=[]
     with open(path+'/AXB.txt','r') as file:
         for line in file:
             if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
             list= [float(i) for i in list]
             aux.append(list)
     return aux     
@@ -48,7 +48,8 @@ def read_data_AXB_n(path,n):
         head= [next(file) for x in range(n)]
         for line in head:
             if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            # list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line) #old regex. Error with letter e
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
             list= [float(i) for i in list]
             aux.append(list)
     return aux  
@@ -59,11 +60,21 @@ def read_data_P_n(path,n):
         head= [next(file) for x in range(n)]
         for line in head:
             # if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line)
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
             list= [float(i) for i in list]
             aux.append(list)
     return aux     
 
+def read_data_width_n(path,n):
+    aux=[]
+    with open(path+'/intervals_change.txt','r') as file:
+        head= [next(file) for x in range(n)]
+        for line in head:
+            # if line == '\n': break
+            list = line.split()
+            list= [float(i) for i in list]
+            aux.append(list)
+    return aux     
 
 
 def make_json_history(folder,data):
@@ -82,10 +93,6 @@ def save_model_summary(folder,config,acti_funs,model):
 
 
 def save_all(folder,config,acti_funs,model,data):
-    # tz = pytz.timezone('Chile/Continental')
-    # date_time=datetime.now(timezone.utc).astimezone(tz=tz).strftime('%d-%m-%Y_%H:%M')
-    # folder=path+'/Results_'+date_time
-    # os.system('mkdir '+folder)
     make_json_history(folder,data)
     save_model_summary(folder,config,acti_funs,model)
     

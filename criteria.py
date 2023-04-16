@@ -1,7 +1,8 @@
 import os
 import numpy as np
 import re
-from get_data import read_data_P_n
+from statistics import mean
+from get_data import *
 
 def count_variables(path):
     variables_n=[]
@@ -18,7 +19,7 @@ def count_variables(path):
     
     return variables_n
 
-def check_P(path,n):
+def check_if_P(path,n):
     input=read_data_P_n(path,n)
     variables_n=[]
     for i in input:
@@ -28,3 +29,19 @@ def check_P(path,n):
             variables_n.append(0)
     return variables_n
 
+def makeAverage(path,n):
+    input=read_data_width_n(path,n)
+    avg=[]
+    for i in input:
+        aux=mean(i)
+        avg.append(aux)
+    return avg
+
+def bool_by_avg(list,avg):
+    for i in range(len(list)):
+        if list[i] >= avg:
+            list[i]=1
+        else:
+            list[i]=0
+    return list
+            
