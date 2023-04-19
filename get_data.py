@@ -24,7 +24,7 @@ def read_data_P(path): #read all the dataset
         for line in file:
             # if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [float(i) for i in list]
+            list= [round(float(i),7) for i in list]
             aux.append(list)
     return aux     
 
@@ -35,7 +35,7 @@ def read_data_AXB(path): #read all the dataset
         for line in file:
             if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [float(i) for i in list]
+            list= [round(float(i),7) for i in list]
             aux.append(list)
     return aux     
 
@@ -50,7 +50,7 @@ def read_data_AXB_n(path,n):
             if line == '\n': break
             # list=re.findall("(?<=[AZaz])?(?!\d*=)[0-9.+-]+",line) #old regex. Error with letter e
             list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [float(i) for i in list]
+            list= [round(float(i),7) for i in list]
             aux.append(list)
     return aux  
 
@@ -61,7 +61,7 @@ def read_data_P_n(path,n):
         for line in head:
             # if line == '\n': break
             list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [float(i) for i in list]
+            list= [round(float(i),7) for i in list]
             aux.append(list)
     return aux     
 
@@ -72,7 +72,7 @@ def read_data_width_n(path,n):
         for line in head:
             # if line == '\n': break
             list = line.split()
-            list= [float(i) for i in list]
+            list= [round(float(i),7) for i in list]
             aux.append(list)
     return aux     
 

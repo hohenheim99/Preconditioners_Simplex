@@ -4,8 +4,8 @@ from criteria import *
 
 folder='test_results'
 n=10000
-avg=10.0
-input=read_data_AXB_n(folder,n)
+avg=20.0
+# input=bool_by_percentage(folder,n,avg)
+num=1.81899e12
 
-for i in input:
-    print(i)
+print(round(num,7))
