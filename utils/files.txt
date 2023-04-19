@@ -27,3 +27,4 @@ benchs_dataset/all/hs100
 benchs_dataset/all/dipigri
 benchs_dataset/all/hs110
 benchs_dataset/all/dixchlng
+ex6_2_10.bch
