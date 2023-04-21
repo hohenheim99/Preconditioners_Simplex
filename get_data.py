@@ -76,6 +76,19 @@ def read_data_width_n(path,n):
             aux.append(list)
     return aux     
 
+def get_n_samples(path,n):
+    with open(path+"/AXB.txt","r") as file:
+        
+        for line in file:
+            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
+
+
+
+
+
+
+
+
 
 def make_json_history(folder,data):
     hist_df = pd.DataFrame(data)
