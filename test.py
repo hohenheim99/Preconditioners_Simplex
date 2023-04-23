@@ -1,11 +1,13 @@
-
-from criteria import *
+from get_data import *
 
 
 folder='test_results'
-n=10000
-avg=20.0
-# input=bool_by_percentage(folder,n,avg)
-num=1.81899e12
+start=10
+end=20
+list=get_data_AXB_variation(folder,start,end)
 
-print(round(num,7))
+list=np.array(pad_list_with_zeros(list))
+
+
+for i in list:
+    print(i)

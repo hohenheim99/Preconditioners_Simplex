@@ -9,38 +9,12 @@ from datetime import datetime,timezone
 import pytz
 
 
-
 def fill_zeros(input_list, N): #depricated
     return input_list + [0.0] * (int(N) - len(input_list))
 
 def pad_list_with_zeros(lists):
     max_len = max(len(lst) for lst in lists)
     return [lst + [0.0] * (max_len - len(lst)) for lst in lists]
-
-
-def read_data_P(path): #read all the dataset
-    aux=[]
-    with open(path+'/DS_P.txt','r') as file:
-        for line in file:
-            # if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [round(float(i),7) for i in list]
-            aux.append(list)
-    return aux     
-
-
-def read_data_AXB(path): #read all the dataset
-    aux=[]
-    with open(path+'/AXB.txt','r') as file:
-        for line in file:
-            if line == '\n': break
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
-            list= [round(float(i),7) for i in list]
-            aux.append(list)
-    return aux     
-
-
-
 
 def read_data_AXB_n(path,n):
     aux=[]
@@ -76,36 +50,53 @@ def read_data_width_n(path,n):
             aux.append(list)
     return aux     
 
-def get_n_samples(path,n):
-    with open(path+"/AXB.txt","r") as file:
-        
-        for line in file:
-            list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
+def get_data_AXB_variation(path,start,end):
+    aux=[]
+    with open(path+'/AXB.txt','r') as file:
+        for line_number, line in enumerate(file):
+            if start-1<=line_number and line_number<=end-1:
+                list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
+                list=[round(float(i),7) for i in list]
+                aux.append(list)
+    return aux
 
 
 
+def read_data_width_n_variation(path,start,end):
+    aux=[]
+    with open(path+'/intervals_change.txt','r') as file:
+        for line_number, line in enumerate(file):
+            if start-1<=line_number and line_number<=end-1:
+                list=line.split()
+                list=[round(float(i),7) for i in list]
+                aux.append(list)
+    return aux   
+
+def get_data_AXB_variation(path,start,end):
+    aux=[]
+    with open(path+'/DS_P.txt','r') as file:
+        for line_number, line in enumerate(file):
+            if start-1<=line_number and line_number<=end-1:
+                list=re.findall("(?<=[AZaz])?(?!\d*=)[eE0-9.+-]+", line)
+                list=[round(float(i),7) for i in list]
+                aux.append(list)
+    return aux
 
 
-
-
-
-
-def make_json_history(folder,data):
+def make_json_history(folder,data): #deprecated
     hist_df = pd.DataFrame(data)
     hist_json_file =folder+'/history.json' 
     with open(hist_json_file, mode='w') as f:
         hist_df.to_json(f)
 
-def save_model_summary(folder,config,acti_funs,model):
+def save_model_summary(folder,config,model):
     with open(folder+'/config.txt','w') as fh:
         for key, value in config.items(): 
             fh.write('%s: %s\n' % (key, value))
-        # fh.write("\n".join(str(item) for item in config))
-        model.summary(print_fn=lambda x: fh.write(x + '\n'))
-        fh.write("\n".join(str(item) for item in acti_funs))
+            model.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 
-def save_all(folder,config,acti_funs,model,data):
+def save_all(folder,config,acti_funs,model,data): #deprecated
     make_json_history(folder,data)
     save_model_summary(folder,config,acti_funs,model)
     
