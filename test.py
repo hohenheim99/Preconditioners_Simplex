@@ -1,13 +1,13 @@
-from get_data import *
 
+accuracy=0
+dic_test={
+    accuracy:'hola',
+}
 
-folder='test_results'
-start=10
-end=20
-list=get_data_AXB_variation(folder,start,end)
+dic_test['2']=''
 
-list=np.array(pad_list_with_zeros(list))
+print(dic_test)
 
+dic_test['2']='chao'
 
-for i in list:
-    print(i)
+print(dic_test)

@@ -93,7 +93,7 @@ def save_model_summary(folder,config,model):
     with open(folder+'/config.txt','w') as fh:
         for key, value in config.items(): 
             fh.write('%s: %s\n' % (key, value))
-            model.summary(print_fn=lambda x: fh.write(x + '\n'))
+        model.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 
 def save_all(folder,config,acti_funs,model,data): #deprecated
