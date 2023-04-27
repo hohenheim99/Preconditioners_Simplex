@@ -9,6 +9,10 @@ from datetime import datetime,timezone
 import pytz
 
 
+def padd_to_n(main_list,n):
+    return [lst + [0.0] * (n - len(lst)) for lst in main_list]
+
+
 def fill_zeros(input_list, N): #depricated
     return input_list + [0.0] * (int(N) - len(input_list))
 
