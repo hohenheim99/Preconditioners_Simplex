@@ -33,20 +33,20 @@ def bool_by_avg(path,n,avg): #Criteria: if % of interval changed is > avg define
     return list
 
 
-def percentage_of_changed_intervals(path,n):
-    input=read_data_width_n(path,n)
-    percentage=[]
-    for i in input:
-        count = sum(1 for k in i if k > 0)
-        percentage.append((count/len(i))*100)
-    return percentage
+# def percentage_of_changed_intervals(path,n):
+#     input=read_data_width_n(path,n)
+#     percentage=[]
+#     for i in input:
+#         count = sum(1 for k in i if k > 0)
+#         percentage.append((count/len(i))*100)
+#     return percentage
 
 
-def bool_by_percentage(path,n,avg):
-    list=percentage_of_changed_intervals(path,n)
-    for i in range(len(list)):
-        if list[i]>=avg:
-            list[i]=1
-        else:
-            list[i]=0
-    return list
+# def bool_by_percentage(path,n,avg):
+#     list=percentage_of_changed_intervals(path,n)
+#     for i in range(len(list)):
+#         if list[i]>=avg:
+#             list[i]=1
+#         else:
+#             list[i]=0
+#     return list
