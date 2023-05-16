@@ -4,7 +4,7 @@ import re
 from statistics import mean
 from get_data import *
 
-
+#Criteria: devuelve 1 si existe la matriz P
 def check_if_P(path,n):
     input=read_data_P_n(path,n)
     variables_n=[]
@@ -14,7 +14,7 @@ def check_if_P(path,n):
         else:
             variables_n.append(0)
     return variables_n
-
+#Crea un promedio de el % de cambio de los intervalos, en un nodo
 def makeAverage(path,n):
     input=read_data_width_n(path,n)
     avg=[]
@@ -23,30 +23,23 @@ def makeAverage(path,n):
         avg.append(aux)
     return avg
 
-def bool_by_avg(path,n,avg): #Criteria: if % of interval changed is > avg defined
+ #Criteria: devuelve bool=1 si un % de cambio promedio de los intervalos, es mayor o igual  un threshold: 
+def bool_by_avg(path,n,threshold):
     list=makeAverage(path,n)
     for i in range(len(list)):
-        if list[i] >= avg:
+        if list[i] >= threshold:
             list[i]=1
         else:
             list[i]=0
     return list
 
-
-# def percentage_of_changed_intervals(path,n):
-#     input=read_data_width_n(path,n)
-#     percentage=[]
-#     for i in input:
-#         count = sum(1 for k in i if k > 0)
-#         percentage.append((count/len(i))*100)
-#     return percentage
-
-
-# def bool_by_percentage(path,n,avg):
-#     list=percentage_of_changed_intervals(path,n)
-#     for i in range(len(list)):
-#         if list[i]>=avg:
-#             list[i]=1
-#         else:
-#             list[i]=0
-#     return list
+#Criteria: devuelve bool=1 si un % de cambio de UN intervalo es mayor o igual  un threshold
+def one_Interval_with_more_percentage(path,n,list,threshold): 
+    input=read_data_width_n(path,n)
+    for i in range(len(list)):
+        if max(list[i]) >= threshold:
+            list[i]=1
+        else:
+            list[i]=0
+    return list
+    

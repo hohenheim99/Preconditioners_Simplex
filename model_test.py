@@ -13,8 +13,10 @@ def model_predict(model_path,sample): #for predicting a single sample
     input=padd_to_n(sample,295) 
 
     input=normalize(input) 
+    print(input)
 
     answer = model.predict(input) 
+    print(answer)
     for i in answer:
         if i > 0.5:
             return 1

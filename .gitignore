@@ -24,3 +24,5 @@ dataset_50percentage/AXB.txt
 dataset_50percentage/DS_P.txt
 dataset_50percentage/intervals_change.txt
 test.py
+*.txt
+*.out
