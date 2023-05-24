@@ -1,0 +1,11 @@
+File,Seed,Nodes,Timeout,Time,Relative precision,Ending status,Simplex time,ANN time,Linearization time
+/home/nico/codes/for_dataset/hs110,4.30933100001,6190
+/home/nico/codes/for_dataset/ex6_2_12.bch,7.51911400001,8472
+/home/nico/codes/for_dataset/hs102,9.99608800001,4544
+/home/nico/codes/for_dataset/ex6_2_8.bch,9.99944100001,9610
+/home/nico/codes/for_dataset/dualc8,9.99710600001,4484
+/home/nico/codes/for_dataset/hs108,9.99685400001,7764
+/home/nico/codes/for_dataset/hs111,9.99942300001,3978
+/home/nico/codes/for_dataset/polak6,9.99986400001,12208
+/home/nico/codes/for_dataset/hs088,9.98335500001,134
+/home/nico/codes/for_dataset/hs089,9.80221400001,64

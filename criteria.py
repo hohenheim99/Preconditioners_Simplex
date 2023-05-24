@@ -35,7 +35,7 @@ def bool_by_avg(path,n,threshold):
 
 #Criteria: devuelve bool=1 si un % de cambio de UN intervalo es mayor o igual  un threshold
 def one_Interval_with_more_percentage(path,n,list,threshold): 
-    input=read_data_width_n(path,n)
+    list=read_data_width_n(path,n)
     for i in range(len(list)):
         if max(list[i]) >= threshold:
             list[i]=1
