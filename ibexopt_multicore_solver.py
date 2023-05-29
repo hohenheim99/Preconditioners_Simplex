@@ -6,9 +6,9 @@ import subprocess
 import csv
 #--------------CONFIGURATION HALL -------------
 seed=1
-timeout=3
+timeout=600
 precision=0.001
-path_to_benchs="/home/nico/framework/old-instances-optim.txt"
+path_to_benchs="/home/nico/codes/experiment_set.txt"
 ibexopt="/home/nico/Ibex/ibex-2.8.9/__build__/src/ibexopt"
 # ---------------------------------------------
 # print("Number of cpu : ", multiprocessing.cpu_count())
@@ -23,7 +23,7 @@ def echo_sys(bench,seed,timeout,ibexopt):
     for i in range(len(output)):
         print(output[i]+" "+str(i))
     temp=[bench,seed,output[-2],timeout,output[-3],output[-4],output[-5],output[-6],output[-7]]
-    with open("benchmarkData.csv", "a", newline="") as file:
+    with open("set_benchmark.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(temp)
         
@@ -36,15 +36,14 @@ if __name__ == "__main__":  # confirms that the code is under main function
 
     headers=["File","Seed","Nodes",'Timeout',"Time","Relative precision","Simplex time","ANN time","Linearization time"]
 
-    with open("benchmarkData.csv", "a", newline="") as file:
+    with open("set_benchmark.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(headers)
 
-    files=files[:3]
+    # files=files[:10]
     procs = []
     # instantiating process with arguments
     for file in files:
-     
         proc = Process(target=echo_sys, args=(file,seed,timeout,ibexopt,))
         procs.append(proc)
         proc.start()

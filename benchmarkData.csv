@@ -1,4 +1,0 @@
-File,Seed,Nodes,Timeout,Time,Relative precision,Simplex time,ANN time,Linearization time
-/home/nico/codes/for_dataset/dualc8,1,2090,3,2.992015,10.14091,1.057707,0.0759623,0.4067346
-/home/nico/codes/for_dataset/ex6_2_12.bch,1,4768,3,2.999898,0.4752567,0.1462748,0.5274788,0.1462485
-/home/nico/codes/for_dataset/hs088,1,18,3,2.96947,inf,0.003949601,0.0008660001,0.2317488

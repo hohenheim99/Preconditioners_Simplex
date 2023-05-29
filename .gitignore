@@ -26,3 +26,4 @@ dataset_50percentage/intervals_change.txt
 test.py
 *.txt
 *.out
+modelos/Modelo_MC-1_6M.model
