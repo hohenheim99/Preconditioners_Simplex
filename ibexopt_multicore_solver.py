@@ -5,11 +5,13 @@ import subprocess
 import csv
 #--------------CONFIGURATION HALL -------------
 seed=1
-timeout=600
+timeout=
 precision=0.001
+criteria="Default"
+threshold=0
 path_to_benchs="/home/nico/codes/benchmarks/experiment_set.txt"
 ibexopt="/home/nico/Ibex/ibex-2.8.9/__build__/src/ibexopt"
-csv_file="set_benchmark_{seed}_{criteria}_{threshold}.csv".format(seed,criteria,threshold)
+csv_file="benchmarks/benchmark_{0}_{1}_{2}.csv".format(criteria,seed,threshold)
 # ---------------------------------------------
 # print("Number of cpu : ", multiprocessing.cpu_count())
 
