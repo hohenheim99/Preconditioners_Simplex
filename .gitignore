@@ -27,3 +27,4 @@ test.py
 *.txt
 *.out
 modelos/
+benchmarks/
