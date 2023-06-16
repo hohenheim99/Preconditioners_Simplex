@@ -33,10 +33,25 @@ def makeAverage(path,n):
         aux=mean(i)
         avg.append(aux)
     return avg
+def makeAverage_variation(path,start,end):
+    input=read_data_width_n_variation(path,start,end)
+    avg=[]
+    for i in input:
+        aux=mean(i)
+        avg.append(aux)
+    return avg
 
  #Criteria: devuelve bool=1 si un % de cambio promedio de los intervalos, es mayor o igual  un threshold: 
 def bool_by_avg(path,n,threshold):
     list=makeAverage(path,n)
+    for i in range(len(list)):
+        if list[i] >= threshold:
+            list[i]=1
+        else:
+            list[i]=0
+    return list
+def bool_by_avg_variation(path,inicio,fin,threshold):
+    list=makeAverage_variation(path,inicio,fin)
     for i in range(len(list)):
         if list[i] >= threshold:
             list[i]=1

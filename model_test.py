@@ -25,6 +25,7 @@ def model_predict(model_path,sample): #for predicting a single sample
         
 def model_testing(model_path,results_path,samples): #for predicting a dataset
     input=read_data_AXB_n(results_path,samples)
+    print('input',input[0])
 
     model=load_model(model_path)
 
@@ -33,5 +34,13 @@ def model_testing(model_path,results_path,samples): #for predicting a dataset
     input=normalize(input)
 
     answer = model.predict(input)
+    print('output',answer[0])
+    
 
     return answer
+
+
+results="/home/nico/codes/test_results"
+answer=model_testing("/home/nico/codes/modelos/mc-4_linear_2m.h5",results,10000)
+for i in answer:
+    print(i)

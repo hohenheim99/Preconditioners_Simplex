@@ -76,7 +76,7 @@ def read_data_width_n_variation(path,start,end):
                 aux.append(list)
     return aux   
 
-def get_data_P_variation(path,start,end):
+def read_data_P_variation(path,start,end):
     aux=[]
     with open(path+'/DS_P.txt','r') as file:
         for line_number, line in enumerate(file):
