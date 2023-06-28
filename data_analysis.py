@@ -1,6 +1,5 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
-import dataframe_image as dfi
 import numpy as np
 
 pd.options.display.float_format = '{:.3f}'.format
@@ -8,14 +7,8 @@ Criteria = pd.read_csv('/home/nico/codes/benchmarks/MC-2/benchmark_model_mc1_2m_
 Default=pd.read_csv('/home/nico/codes/benchmarks/base/benchmark_Default.csv').replace(np.inf,np.nan, regex=True)
 Criteria['File'] = Criteria['File'].str.replace('for_dataset/', '')
 Default['File'] = Default['File'].str.replace('for_dataset/', '')
-
-
-
 Default_grouped=Default.groupby('File')
 Criteria_grouped =Criteria.groupby('File')
-
-
-
 
 col=['Time', 'Nodes','ANN time']
 
@@ -23,8 +16,6 @@ df1 = Default_grouped[col].mean()
 df2 = Criteria_grouped[col].mean()
 
 df_combined = pd.concat([df1.add_suffix('_Default'), df2.add_suffix('_Modelo')], axis=1)
-
-
 desired_order = ['Time_Default', 'Time_Modelo','Time_Modelo without ANN', 'Nodes_Default','Nodes_Modelo','ANN time_Default','ANN time_Modelo']
 df_combined['Time_Modelo without ANN'] = (df_combined['Time_Modelo'] - df_combined['ANN time_Modelo'])
 # Reorder the columns based on the desired order

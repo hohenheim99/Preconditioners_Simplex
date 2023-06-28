@@ -6,12 +6,12 @@ import csv
 import pandas as pd
 #--------------CONFIGURATION HALL -------------
 seed_Inicial=1
-seed_Final=1
+seed_Final=4
 timeout=3600
 precision=0.001
-criteria="model_mc1_2m_threshold_05"
+criteria="Model_MC-2_50%"
 path_to_benchs="/home/nico/codes/benchmarks/experiment_set.txt"
-short='/home/nico/codes/benchmarks/short.txt'
+# short='/home/nico/codes/benchmarks/short.txt'
 ibexopt="/home/nico/Ibex/ibex-2.8.9/__build__/src/ibexopt"
 csv_file="benchmarks/MC-2/benchmark_{0}.csv".format(criteria)
 # ---------------------------------------------
@@ -36,7 +36,7 @@ def echo_sys(bench,seed_Inicial,seed_Final,timeout,ibexopt):
 
 if __name__ == "__main__":  # confirms that the code is under main function
     files=[]
-    with open(short,'r') as file:
+    with open(path_to_benchs,'r') as file:
         for line in file:
             files.append(line.strip('\n'))
 
