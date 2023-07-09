@@ -9,11 +9,11 @@ seed_Inicial=1
 seed_Final=4
 timeout=3600
 precision=0.001
-criteria="Model_MC-4"
+criteria="MC-4_full"
 path_to_benchs="/home/nico/codes/benchmarks/experiment_set.txt"
-# results_tests='/home/nico/codes/benchmarks/positive_results.txt'
+# results_tests='/home/nico/codes/benchmarks/dataset_set.txt'
 ibexopt="/home/nico/Ibex/ibex-2.8.9/__build__/src/ibexopt"
-csv_file="benchmarks/base/benchmark_{0}.csv".format(criteria)
+csv_file="benchmarks/MC-4/benchmark_{0}.csv".format(criteria)
 # ---------------------------------------------
 # print("Number of cpu : ", multiprocessing.cpu_count())
 
@@ -23,9 +23,8 @@ def echo_sys(bench,seed_Inicial,seed_Final,timeout,ibexopt):
     for i in range(seed_Inicial,seed_Final+1):
         cmd="{0} {1} --random-seed={2} --timeout={3}".format(ibexopt,bench,i,timeout)
         output = subprocess.Popen( cmd, stdout=subprocess.PIPE, shell=True ).communicate()[0]
-        # print(bench+" "+str(i)+" done")
+        print(bench+" "+str(i)+" done")
         output=output.decode("utf-8")
-        print(output)
         output=output.split('\n') 
         results.append([bench,i,output[-2],timeout,output[-3],output[-4],output[-5],output[-6],output[-7]])
         
