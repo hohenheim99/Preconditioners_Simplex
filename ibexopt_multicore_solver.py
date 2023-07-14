@@ -7,9 +7,9 @@ import pandas as pd
 #--------------CONFIGURATION HALL -------------
 seed_Inicial=1
 seed_Final=4
-timeout=3600
+timeout=1
 precision=0.001
-criteria="MC-4_full"
+criteria="testo"
 path_to_benchs="/home/nico/codes/benchmarks/experiment_set.txt"
 # results_tests='/home/nico/codes/benchmarks/dataset_set.txt'
 ibexopt="/home/nico/Ibex/ibex-2.8.9/__build__/src/ibexopt"

@@ -26,6 +26,5 @@ dataset_50percentage/intervals_change.txt
 test.py
 *.txt
 *.out
-modelos/
-benchmarks/
 ola.py
+test2.py
